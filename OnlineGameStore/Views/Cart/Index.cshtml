@@ -1,0 +1,59 @@
+﻿@model OnlineGameStore.Models.CartViewModels
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Shopping Cart</h2>
+
+<hr />
+
+<div class="row" style="background-color:#F2F2F2">
+    <div class="col-md-9" style="background-color:#F2F2F2">
+        @foreach (var item in Model.Products)
+        {
+            var image_path = "/ProductsImages/" + item.Id + "/1.jpg";
+            var details_url = "Games/Details/" + @item.Id;
+            <div class="gameproduct" style="background-color:white">
+                <div class="row" align="center">
+                    <div class="col-md-3">
+                        <a href=@details_url><img src=@image_path alt=@Html.DisplayFor(modelItem => item.ProductName) width="150" height="150" /></a>
+                    </div>
+                    <div class="col-md-3">
+                        <br />
+                        <br />
+                        <br />
+                        <b><p style="font-size: medium;">@Html.DisplayFor(modelItem => item.ProductName)</p></b>
+                    </div>
+                    <div class="col-md-3">
+                        <br />
+                        <br />
+                        <p><del>@Html.DisplayFor(modelItem => item.NormalPriece) Lei</del></p>
+                        <b><p style="font-size: medium; color:red;">@Html.DisplayFor(modelItem => item.CurrentPrice) Lei</p></b>
+                    </div>
+                    <div class="col-md-2">
+                        <br />
+                        <br />
+                        <br />
+                        @Html.ActionLink("Delete From Cart", "DeleteFromCart", new { id = item.Id })
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="col-md-3" style="background-color:#F2F2F2">
+        <div class="gameproduct" style="background-color:white" align="center">
+            <br />
+            <br />
+            <b><p style="font-size: medium;"> Number of products: @Html.DisplayFor(Model => Model.Cart.NumberOfProducts)</p></b>
+            <br />
+            <br />
+            <b><p style="font-size: medium;"> Products cost: @Html.DisplayFor(Model => Model.Cart.TotalAmount)</p></b>
+            <b><p style="font-size: medium;"> Delivery cost: 0.00</p></b>
+            <hr />
+            <b><p style="font-size: medium;"> Total cost: @Html.DisplayFor(Model => Model.Cart.TotalAmount)</p></b>
+            <button type="submit" class="btn btn-default">@Html.ActionLink("Place Order", "PlaceOrder", new { id = Model.Cart.Id })</button>
+            <br />
+            <br />
+        </div>
+    </div>
+</div>

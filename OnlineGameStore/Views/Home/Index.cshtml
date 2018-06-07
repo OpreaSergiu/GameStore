@@ -1,0 +1,125 @@
+﻿@model OnlineGameStore.Models.GamesViewModels
+@{
+    ViewBag.Title = "Home Page";
+}
+
+
+<div class="container">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel" style="max-width: 1600px">
+        <div class="carousel-inner">
+            <div class="item active" style="background-image: url(/Images/cod-bg.jpg); height: 300px; width: 1600px;">
+                <table style="position:absolute; top:60px; left:60px;">
+                    <tr>
+                        <td><img width="300" height="100" src="/Images/cod.png"></td>
+                    </tr>
+                    <tr>
+                        <td align="center"><a class="btn btn-primary" href="Games/Details/7"> <!----> Pre-purchase </a></td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="item" style="background-image: url(/Images/wow-bg.jpg); height: 300px; width: 1600px;">
+                <table style="position:absolute; top:60px; left:60px;">
+                    <tr>
+                        <td><img width="300" height="140" src="/Images/wow-1200x536.png"></td>
+                    </tr>
+                    <tr>
+                        <td align="center"><a class="btn btn-primary" href="Games/Details/6"> <!----> Pre-purchase </a></td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<h3>New Added:</h3>
+
+<div class="row">
+
+    @foreach (var item in Model.Products)
+    {
+        var image_path = "/ProductsImages/" + item.Id + "/1.jpg";
+        var details_url = "Games/Details/" + @item.Id;
+        <div class="col-md-2" style="background-color:white">
+            <div align="center">
+                <a href=@details_url><img src=@image_path alt=@Html.DisplayFor(modelItem => item.ProductName) width="150" height="150" /></a>
+                <b><p style="font-size: medium;">@Html.DisplayFor(modelItem => item.ProductName)</p></b>
+                <p><del>@Html.DisplayFor(modelItem => item.NormalPriece) Lei</del></p>
+                <b><p style="font-size: medium; color:red;">@Html.DisplayFor(modelItem => item.CurrentPrice) Lei</p></b>
+                <button type="submit" class="btn ">@Html.ActionLink("Add To Cart", "AddToCart", new { id = item.Id})</button>
+                <br />
+                <br />
+            </div>
+        </div>
+    }
+
+</div>
+
+<br />
+
+<table class="table table-bordered">
+    <tr>
+
+        <td>
+            <div class="inline-block">
+                <table>
+                    <tr>
+                        <td>
+                            <img class="table-cell" src="https://s12emagst.akamaized.net/layout/ro/images/db//19/27841.png" alt="icon">
+                        </td>
+                        <td>
+                            <b><span class="table-cell">The most varied range of products</span></b>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </td>
+
+        <td>
+            <div class="inline-block">
+                <table>
+                    <tr>
+                        <td>
+                            <img class="table-cell" src="https://s12emagst.akamaized.net/layout/ro/images/db//19/27843.png" alt="icon">
+                        </td>
+                        <td>
+                            <b><span class="table-cell">Opening the package at delivery</span></b>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </td>
+
+        <td>
+            <div class="inline-block">
+                <table>
+                    <tr>
+                        <td>
+                            <img class="table-cell" src="https://s12emagst.akamaized.net/layout/ro/images/db//19/27844.png" alt="icon">
+                        </td>
+                        <td>
+                            <b><span class="table-cell">Support 24/7</span></b>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </td>
+
+        <td>
+            <div class="inline-block">
+                <table>
+                    <tr>
+                        <td>
+                            <img class="table-cell" src="https://s12emagst.akamaized.net/layout/ro/images/db//30/44561.png" alt="icon">
+                        </td>
+                        <td>
+                            <b><span class="table-cell">Easy return in 30 days</span></b>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </td>
+
+    </tr>
+</table>

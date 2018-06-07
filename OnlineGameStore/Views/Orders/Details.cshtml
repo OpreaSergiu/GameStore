@@ -1,0 +1,127 @@
+﻿@model OnlineGameStore.Models.OrderViewModels
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Order Details</h2>
+
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+<hr />
+
+<div class="row" style="background-color:#F2F2F2">
+    <div class="col-md-8" style="background-color:#F2F2F2">
+        @foreach (var item in Model.Products)
+        {
+            var image_path = "/ProductsImages/" + item.Id + "/1.jpg";
+            var details_url = "Games/Details/" + @item.Id;
+            <div class="gameproduct" style="background-color:white">
+                <div class="row" align="center">
+                    <div class="col-md-3">
+                        <a href=@details_url><img src=@image_path alt=@Html.DisplayFor(modelItem => item.ProductName) width="150" height="150" /></a>
+                    </div>
+                    <div class="col-md-3">
+                        <br />
+                        <br />
+                        <br />
+                        <b><p style="font-size: medium;">@Html.DisplayFor(modelItem => item.ProductName)</p></b>
+                    </div>
+                    <div class="col-md-3">
+                        <br />
+                        <br />
+                        <p><del>@Html.DisplayFor(modelItem => item.NormalPriece) Lei</del></p>
+                        <b><p style="font-size: medium; color:red;">@Html.DisplayFor(modelItem => item.CurrentPrice) Lei</p></b>
+                    </div>
+                    <div class="col-md-2">
+                        <br />
+                        <br />
+                        <br />
+                        @Html.ActionLink("Delete From Order", "DeleteFromOrder", new { id = item.Id, OredrId = Model.Order.Id })
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="col-md-4" style="background-color:#F2F2F2">
+        <div>
+            <hr />
+            <dl class="dl-horizontal">
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Order.Email)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Order.Email)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Order.TotalAmount)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Order.TotalAmount)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Order.NumberOfProducts)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Order.NumberOfProducts)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Order.Name)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Order.Name)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Order.Phone)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Order.Phone)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Order.Address)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Order.Address)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Order.City)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Order.City)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Order.State)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Order.State)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Order.Status)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Order.Status)
+                </dd>
+
+            </dl>
+        </div>
+    </div>
+</div>

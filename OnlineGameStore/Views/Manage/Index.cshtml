@@ -1,0 +1,90 @@
+﻿@model OnlineGameStore.Models.IndexViewModel
+@{
+    ViewBag.Title = "Manage";
+}
+
+<h2>Account Info</h2>
+
+<p class="text-success">@ViewBag.StatusMessage</p>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-6">
+        @if (Model.AccountInfo.Phone == null)
+        {
+            <form class="form" method="post">
+                <input class="form-control" type="hidden" id="Id" name="Id" runat="server" value=@Model.AccountInfo.Id />
+                <label>Name: </label>
+                <br />
+                <input class="form-control" type="text" id="Name" name="Name" runat="server" />
+                <br />
+                <label>Phone: </label>
+                <br />
+                <input class="form-control" type="text" id="Phone" name="Phone" runat="server" />
+                <br />
+                <label>Address: </label>
+                <br />
+                <input class="form-control" type="text" id="Address" name="Address" runat="server" />
+                <br />
+                <label>City: </label>
+                <br />
+                <input class="form-control" type="text" id="City" name="City" runat="server" />
+                <br />
+                <label>State: </label>
+                <br />
+                <input class="form-control" type="text" id="State" name="State" runat="server" />
+                <br />
+                <button type="submit" class="btn">Submit</button>
+            </form>
+        }
+        else
+        {
+            <div>
+                <dl class="dl-horizontal">
+                    <dt>Name:</dt>
+                    <dd>
+                        @Model.AccountInfo.Name
+                    </dd>
+                    <dt>Phone:</dt>
+                    <dd>
+                        @Model.AccountInfo.Phone
+                    </dd>
+                    <dt>Email:</dt>
+                    <dd>
+                        @Model.AccountInfo.Email
+                    </dd>
+                    <dt>Address:</dt>
+                    <dd>
+                        @Model.AccountInfo.Address
+                    </dd>
+                    <dt>City:</dt>
+                    <dd>
+                        @Model.AccountInfo.City
+                    </dd>
+                    <dt>State:</dt>
+                    <dd>
+                        @Model.AccountInfo.State
+                    </dd>
+                    <dt>Password:</dt>
+                    <dd>
+                        @if (Model.HasPassword)
+                        {
+                            @Html.ActionLink("Change your password", "ChangePassword")
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Create", "SetPassword")
+                        }
+                    </dd>
+                </dl>
+            </div>
+        }
+    </div>
+    <div class="col-md-6">
+        <br />
+        <br />
+        <br />
+        <button type="submit" class="btn btn-default">@Html.ActionLink("Orders History", "Index", "UsersOrders")</button>
+    </div>
+</div>

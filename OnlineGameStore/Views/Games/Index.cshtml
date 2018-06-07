@@ -1,0 +1,56 @@
+﻿@model OnlineGameStore.Models.GamesViewModels
+@{
+    ViewBag.Title = "Index";
+    var counter = 0;
+    var check = false;
+}
+
+
+<br />
+<div class="row" style="background-color:#F2F2F2">
+    <div class="col-md-3">
+        <div class="gameproduct" style="background-color:white">
+            <div class="filterlist">
+                <b><p style="font-size: medium;">Price</p></b>
+                <ul class="list-unstyled">
+                    <li><label><input type="checkbox" value="">Sub 50</label></li>
+                    <li><label><input type="checkbox" value="">50-100</label></li>
+                    <li><label><input type="checkbox" value="">100-200</label></li>
+                    <li><label><input type="checkbox" value="">200-500</label></li>
+                    <li><label><input type="checkbox" value="">500-1000</label></li>
+                </ul>
+            </div>
+        </div> 
+        <div class="gameproduct" align="center" style="background-color:white">
+            <b><p style="font-size: medium;">Type</p></b>
+
+        </div>
+        <div class="gameproduct" align="center" style="background-color:white">
+            <b><p style="font-size: medium;">Producer</p></b>
+
+        </div>
+    </div>
+    <div class="col-md-9" style="background-color:#F2F2F2">
+        <div class="row">
+
+            @foreach (var item in Model.Products)
+            {
+                var image_path = "/ProductsImages/" + item.Id + "/1.jpg";
+                var details_url = "Games/Details/" + @item.Id;
+                counter = counter++;
+                <div class="col-md-3 gameproduct" style="background-color:white">
+                    <div align="center">
+                        <a href=@details_url><img src=@image_path alt=@Html.DisplayFor(modelItem => item.ProductName) width="170" height="170" /></a>
+                        <b><p style="font-size: medium;">@Html.DisplayFor(modelItem => item.ProductName)</p></b>
+                        <p><del>@Html.DisplayFor(modelItem => item.NormalPriece) Lei</del></p>
+                        <b><p style="font-size: medium; color:red;">@Html.DisplayFor(modelItem => item.CurrentPrice) Lei</p></b>
+                        <button type="submit" class="btn ">@Html.ActionLink("Add To Cart", "AddToCart", new { id = item.Id })</button>
+                        <br />
+                        <br />
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+﻿@using Microsoft.AspNet.Identity
+@model OnlineGameStore.Models.CartModels
+@{
+    var code = "<div class=\"fa-3x\" style=\"color: white\"><span class=\"fa-layers fa-fw\"><i class=\"fas fa-shopping-cart\"></i>";
+    if (Model.NumberOfProducts > 0)
+    {
+        code += "<span class=\"fa-layers-counter\" style=\"background:Tomato\">";
+        code += Model.NumberOfProducts;
+        code += "</span>";
+    }
+    code += "</span></ div >";
+}
+@if (Request.IsAuthenticated)
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("My Shopping Cart", "Index", "Cart", routeValues: null, htmlAttributes: new { })</li>
+        <li>@Html.Raw(code)</li>
+    </ul>
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("My Shopping Cart", "Index", "Cart", routeValues: null, htmlAttributes: new { })</li>
+        <li>@Html.Raw(code)</li>
+    </ul>
+}

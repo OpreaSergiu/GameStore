@@ -1,0 +1,64 @@
+﻿@model OnlineGameStore.Models.ProductsModels
+@{
+    ViewBag.Title = "Details";
+    var image_path = "/ProductsImages/" + Model.Id + "/1.jpg";
+    var details_url = "/Details/" + Model.Id;
+}
+
+<h2>@Html.DisplayFor(model => Model.ProductName)</h2>
+<hr />
+<div class="row">
+    <div class="col-md-5">
+        <a href=@details_url><img src=@image_path alt=@Html.DisplayFor(model => Model.ProductName) /></a>
+    </div>
+    <div class="col-md-4">
+        <p style="color:darkgrey;">Client Opinion:</p>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+        <a>3.0</a>
+        <hr />
+        <p style="color:mediumseagreen;"><img src="/Images/Delivery_image.png"><b>  Free Delivery</b></p>
+        <hr />
+    </div>
+    <div class="col-md-3">
+        <p><del>@Html.DisplayFor(model => Model.NormalPriece) Lei</del></p>
+        <b><p style="font-size:x-large; color:red;">@Html.DisplayFor(model => Model.CurrentPrice) Lei</p></b>
+        <button type="submit" class="btn ">@Html.ActionLink("Add To Cart", "AddToCart", new { id = Model.Id })</button>
+    </div>
+</div>
+
+<hr />
+
+<h3>General Description</h3>
+
+@Html.DisplayFor(model => Model.Details)
+
+<hr />
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>GENERAL CHARACTERISTICS</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="filterable-cell">Producer</td>
+            <td class="filterable-cell">@Html.DisplayFor(model => Model.Pruducer)</td>
+        </tr>
+        <tr>
+            <td class="filterable-cell">Game Type</td>
+            <td class="filterable-cell">@Html.DisplayFor(model => Model.Type)</td>
+        </tr>
+    </tbody>
+</table>
+
+<hr />
+<h3>Reviews</h3>
+
+
+<hr />
